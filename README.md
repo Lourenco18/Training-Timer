@@ -37,6 +37,8 @@ JavaScript (Vanilla)
 
 Criar um temporizador simples, visualmente elegante e funcional, focado na experiência do utilizador e fácil de personalizar ou expandir.
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
 🇬🇧 English
 
 An interactive training timer with work and rest cycles, ideal for routines such as HIIT, Pomodoro, Tabata, or custom workouts.

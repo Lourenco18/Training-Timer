@@ -6,21 +6,61 @@
 
     button {
       flex: 1;
-      padding: 12px;
+      padding: 12px 20px;
       border: none;
       border-radius: 14px;
       font-size: 14px;
+      font-weight: 600;
       cursor: pointer;
-      background: rgba(37, 99, 235, 0.75);
+      background: rgba(37, 99, 235, 0.85);
       color: white;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: rgba(37, 99, 235, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
     }
 
     button.stop {
-      background: rgba(220, 38, 38, 0.75);
+      background: rgba(220, 38, 38, 0.85);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    button.stop:hover {
+      background: rgba(220, 38, 38, 1);
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
     }
 
     button.pause {
       margin-top: 12px;
       width: 130px;
-      background: rgba(234, 179, 8, 0.8);
+      background: rgba(234, 179, 8, 0.85);
+      box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+    }
+
+    button.pause:hover {
+      background: rgba(234, 179, 8, 1);
+      box-shadow: 0 6px 16px rgba(234, 179, 8, 0.4);
+    }
+
+    @media (max-width: 480px) {
+      button {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      button.pause {
+        width: 110px;
+        padding: 8px 14px;
+      }
     }

@@ -1,16 +1,30 @@
 .timer-wrapper {
       position: relative;
       width: 260px;
-      height: 260px;
       margin: 25px auto 0;
+      padding-bottom: 15px;
+    }
+
+    @media (max-width: 480px) {
+      .timer-wrapper {
+        width: 220px;
+        margin: 20px auto 0;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .timer-wrapper {
+        width: 200px;
+      }
     }
 
  .timer {
   position: absolute;
-  inset: 0;
-  margin: auto;
+  top: 0;
+  left: 0;
   width: 240px;
   height: 240px;
+  margin: 10px;
   border-radius: 50%;
   background: rgba(255,255,255,0.12);
   display: flex;
@@ -29,6 +43,42 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .timer {
+        width: 200px;
+        height: 200px;
+      }
+
+      .progress-ring {
+        width: 220px !important;
+        height: 220px !important;
+      }
+
+      .progress-ring circle {
+        cx: 110;
+        cy: 110;
+        r: 95;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .timer {
+        width: 180px;
+        height: 180px;
+      }
+
+      .progress-ring {
+        width: 200px !important;
+        height: 200px !important;
+      }
+
+      .progress-ring circle {
+        cx: 100;
+        cy: 100;
+        r: 85;
+      }
     }
 
 

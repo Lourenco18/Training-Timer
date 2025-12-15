@@ -1,7 +1,7 @@
 const translations = {
   pt: {
     title: "Temporizador de Treino",
-    clock: "Clock",
+    clock: "Temporizador de Treino",
     stopped: "Parado",
     paused: "Pausado",
     work: "Treino",
@@ -17,11 +17,11 @@ const translations = {
     hours: "Horas",
     start: "Iniciar",
     stop: "Parar",
-    language: "Idioma"
+    language: "Idioma",
   },
   en: {
     title: "Workout Timer",
-    clock: "Clock",
+    clock: "Workout Timer",
     stopped: "Stopped",
     paused: "Paused",
     work: "Work",
@@ -37,11 +37,11 @@ const translations = {
     hours: "Hours",
     start: "Start",
     stop: "Stop",
-    language: "Language"
+    language: "Language",
   },
   fr: {
     title: "Minuteur d'Entraînement",
-    clock: "Horloge",
+    clock: "Minuteur d'Entraînement",
     stopped: "Arrêté",
     paused: "En pause",
     work: "Travail",
@@ -57,40 +57,40 @@ const translations = {
     hours: "Heures",
     start: "Démarrer",
     stop: "Arrêter",
-    language: "Langue"
-  }
+    language: "Langue",
+  },
 };
 
-let currentLanguage = localStorage.getItem('timerLanguage') || 'pt';
+let currentLanguage = localStorage.getItem("timerLanguage") || "pt";
 
 function setLanguage(lang) {
   if (!translations[lang]) return;
-  
+
   currentLanguage = lang;
-  localStorage.setItem('timerLanguage', lang);
+  localStorage.setItem("timerLanguage", lang);
   applyTranslations();
 }
 
 function applyTranslations() {
   const t = translations[currentLanguage];
-  
+
   // Update title
   document.title = t.title;
-  
+
   // Update page elements with data-i18n attribute
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    const key = element.getAttribute('data-i18n');
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.getAttribute("data-i18n");
     if (t[key]) {
-      if (element.tagName === 'OPTION') {
+      if (element.tagName === "OPTION") {
         element.textContent = t[key];
-      } else if (element.tagName === 'BUTTON') {
+      } else if (element.tagName === "BUTTON") {
         element.textContent = t[key];
       } else {
         element.textContent = t[key];
       }
     }
   });
-  
+
   // Update HTML lang attribute
   document.documentElement.lang = currentLanguage;
 }
@@ -98,3 +98,35 @@ function applyTranslations() {
 function getTranslation(key) {
   return translations[currentLanguage][key] || key;
 }
+
+// Language selector functions
+const languageFlags = {
+  pt: "🇵🇹",
+  en: "🇬🇧",
+  fr: "🇫🇷",
+};
+
+function toggleLanguageMenu() {
+  const options = document.getElementById("languageOptions");
+  options.classList.toggle("open");
+}
+
+function selectLanguage(lang) {
+  setLanguage(lang);
+  document.getElementById("currentFlag").textContent = languageFlags[lang];
+  document.getElementById("languageOptions").classList.remove("open");
+}
+
+// Close language menu when clicking outside
+document.addEventListener("click", function (event) {
+  const selector = document.getElementById("languageSelector");
+  if (selector && !selector.contains(event.target)) {
+    document.getElementById("languageOptions").classList.remove("open");
+  }
+});
+
+// Initialize flag on page load
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("currentFlag").textContent =
+    languageFlags[currentLanguage];
+});

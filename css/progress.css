@@ -1,5 +1,6 @@
  .progress-ring {
       transform: rotate(-90deg);
+      filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.3));
     }
 
     .progress-ring circle {
@@ -12,12 +13,17 @@
     }
 
     .progress-ring .progress {
-      stroke: rgba(255,255,255,0.85);
+      stroke: #22c55e; 
       stroke-linecap: round;
-      transition: stroke-dashoffset 0.5s linear;
+      transition: stroke-dashoffset 0.5s linear, stroke 0.3s ease;
+      filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.5));
     }
-    .progress-ring .progress {
-  stroke: #22c55e; 
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.5s linear, stroke 0.3s ease;
-}
+
+    @keyframes pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.3));
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(34, 197, 94, 0.6));
+      }
+    }

@@ -14,17 +14,29 @@
 <body>
   <div class="container">
     <div class ="timerSection">
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <h1 data-i18n="clock">Clock</h1>
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <label data-i18n="language" style="margin: 0; font-size: 14px;">Idioma</label>
-        <select id="languageSelector" onchange="setLanguage(this.value)" style="padding: 4px 8px; border-radius: 4px;">
-          <option value="pt">🇵🇹 Português</option>
-          <option value="en">🇬🇧 English</option>
-          <option value="fr">🇫🇷 Français</option>
-        </select>
+    <div class="language-selector-wrapper">
+      <div class="language-selector" id="languageSelector">
+        <div class="selected-flag" onclick="toggleLanguageMenu()">
+          <span id="currentFlag">🇵🇹</span>
+        </div>
+        <div class="language-options" id="languageOptions">
+          <div class="language-option" onclick="selectLanguage('pt')">
+            <span class="flag">🇵🇹</span>
+            <span class="language-name">Português</span>
+          </div>
+          <div class="language-option" onclick="selectLanguage('en')">
+            <span class="flag">🇬🇧</span>
+            <span class="language-name">English</span>
+          </div>
+          <div class="language-option" onclick="selectLanguage('fr')">
+            <span class="flag">🇫🇷</span>
+            <span class="language-name">Français</span>
+          </div>
+        </div>
       </div>
     </div>
+    
+    <h1 data-i18n="clock">Temporizador de Treino</h1>
 
     <div class="timer-wrapper">
       <svg class="progress-ring" width="260" height="260">
@@ -40,7 +52,7 @@
       <button id="pauseBtn" class="pause" onclick="togglePause()" data-i18n="pause">Pausar</button>
     </div>
     </div>
-<div style="margin-top:30%">
+<div class="controls-section">
 
 
     <label data-i18n="workTimeLabel">Tempo de cada ciclo</label>

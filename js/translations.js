@@ -18,6 +18,10 @@ const translations = {
     start: "Iniciar",
     stop: "Parar",
     language: "Idioma",
+    errorTitle: "Valores inválidos!",
+    errorWorkTime: "O tempo de treino deve ser superior a 0",
+    errorRestTime: "O tempo de descanso não pode ser negativo",
+    errorCycles: "O número de ciclos deve ser superior a 0",
   },
   en: {
     title: "Workout Timer",
@@ -38,6 +42,10 @@ const translations = {
     start: "Start",
     stop: "Stop",
     language: "Language",
+    errorTitle: "Invalid values!",
+    errorWorkTime: "Work time must be greater than 0",
+    errorRestTime: "Rest time cannot be negative",
+    errorCycles: "Number of cycles must be greater than 0",
   },
   fr: {
     title: "Minuteur d'Entraînement",
@@ -58,6 +66,10 @@ const translations = {
     start: "Démarrer",
     stop: "Arrêter",
     language: "Langue",
+    errorTitle: "Valeurs invalides!",
+    errorWorkTime: "Le temps de travail doit être supérieur à 0",
+    errorRestTime: "Le temps de repos ne peut pas être négatif",
+    errorCycles: "Le nombre de cycles doit être supérieur à 0",
   },
 };
 
@@ -130,3 +142,86 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("currentFlag").textContent =
     languageFlags[currentLanguage];
 });
+
+// Error handling functions
+function showError(message) {
+  const errorAlert = document.getElementById("errorAlert");
+  const errorMessage = document.getElementById("errorMessage");
+  errorMessage.textContent = message;
+  errorAlert.style.display = "flex";
+}
+
+function closeError() {
+  console.log("closeError called");
+  const errorAlert = document.getElementById("errorAlert");
+  if (errorAlert) {
+    errorAlert.style.display = "none";
+  }
+}
+
+// Initialize error handlers
+window.addEventListener("load", function () {
+  const closeBtn = document.getElementById("errorCloseBtn");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      console.log("Close button clicked");
+      e.preventDefault();
+      e.stopPropagation();
+      closeError();
+    });
+  }
+
+  const errorAlert = document.getElementById("errorAlert");
+  if (errorAlert) {
+    errorAlert.addEventListener("click", function (e) {
+      if (e.target === errorAlert) {
+        closeError();
+      }
+    });
+  }
+
+  const errorContent = document.querySelector(".error-content");
+  if (errorContent) {
+    errorContent.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  }
+});
+
+// Validation and start timer
+function validateAndStart() {
+  console.log("validateAndStart called");
+  const workTime = parseInt(document.getElementById("workTime").value);
+  const restTime = parseInt(document.getElementById("restTime").value);
+  const cycles = parseInt(document.getElementById("cycles").value);
+
+  console.log("Values:", { workTime, restTime, cycles });
+
+  let error = null;
+
+  if (isNaN(workTime) || workTime <= 0) {
+    error = getTranslation("errorWorkTime");
+  } else if (isNaN(restTime) || restTime < 0) {
+    error = getTranslation("errorRestTime");
+  } else if (isNaN(cycles) || cycles <= 0) {
+    error = getTranslation("errorCycles");
+  }
+
+  console.log("Error:", error);
+
+  if (error) {
+    console.log("Showing error");
+    showError(error);
+    return false;
+  }
+
+  // If validation passes, start the timer
+  console.log("Starting timer");
+  if (typeof startTimer === "function") {
+    startTimer();
+  } else {
+    console.error("startTimer is not defined");
+  }
+
+  return false;
+}

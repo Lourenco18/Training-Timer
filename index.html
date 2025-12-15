@@ -49,7 +49,7 @@
 </div>
 
 
-      <button id="pauseBtn" class="pause" onclick="togglePause()" data-i18n="pause">Pausar</button>
+      <button type="button" id="pauseBtn" class="pause" onclick="togglePause()" data-i18n="pause">Pausar</button>
     </div>
     </div>
 <div class="controls-section">
@@ -57,7 +57,7 @@
 
     <label data-i18n="workTimeLabel">Tempo de cada ciclo</label>
     <div style="display:flex; gap:6px;">
-      <input type="number" min="1" id="workTime" value="30" />
+      <input type="number" id="workTime" value="30" min="1" />
       <select id="workUnit">
         <option value="seconds" data-i18n="seconds">Segundos</option>
         <option value="minutes" data-i18n="minutes">Minutos</option>
@@ -67,7 +67,7 @@
 
     <label data-i18n="restTimeLabel">Tempo de descanso</label>
     <div style="display:flex; gap:6px;">
-      <input type="number" min="0" ="restTime" value="10" />
+      <input type="number" id="restTime" value="10" min="0" />
       <select id="restUnit">
         <option value="seconds" data-i18n="seconds">Segundos</option>
         <option value="minutes" data-i18n="minutes">Minutos</option>
@@ -76,11 +76,22 @@
     </div>
 
     <label data-i18n="cyclesLabel">Número de ciclos</label>
-    <input type="number" min="1" id="cycles" value="5" />
+    <input type="number" id="cycles" value="5" min="1" />
+
+    <div id="errorAlert" class="error-alert" style="display: none;">
+      <div class="error-content">
+        <span class="error-icon">⚠️</span>
+        <div class="error-text">
+          <p class="error-title" data-i18n="errorTitle">Valores inválidos!</p>
+          <p class="error-message" id="errorMessage"></p>
+        </div>
+        <button type="button" class="error-close" id="errorCloseBtn">✕</button>
+      </div>
+    </div>
 
     <div class="buttons">
-      <button onclick="startTimer()" data-i18n="start">Iniciar</button>
-      <button class="stop" onclick="stopTimer()" data-i18n="stop">Parar</button>
+      <button type="button" onclick="validateAndStart()" data-i18n="start">Iniciar</button>
+      <button type="button" class="stop" onclick="stopTimer()" data-i18n="stop">Parar</button>
     </div>
   </div>
   </div>

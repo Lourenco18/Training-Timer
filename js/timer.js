@@ -34,12 +34,29 @@ function timerTick() {
 
   if (currentTime <= 0) {
     if (isWork) {
-      isWork = false;
-      currentTime = convertToSeconds(restTime.value, restUnit.value);
-      totalTime = currentTime;
+      const restSeconds = convertToSeconds(restTime.value, restUnit.value);
 
-      status.innerText = getTranslation("rest");
-      setProgressColor("rest");
+      if (restSeconds <= 0) {
+        // Se não há descanso, vai direto para o próximo ciclo
+        remainingCycles--;
+        if (remainingCycles <= 0) {
+          stopTimer();
+          status.innerText = getTranslation("completed");
+          return;
+        }
+        // Próximo ciclo de trabalho
+        currentTime = convertToSeconds(workTime.value, workUnit.value);
+        totalTime = currentTime;
+        status.innerText = getTranslation("work");
+        setProgressColor("work");
+      } else {
+        // Há descanso
+        isWork = false;
+        currentTime = restSeconds;
+        totalTime = currentTime;
+        status.innerText = getTranslation("rest");
+        setProgressColor("rest");
+      }
     } else {
       remainingCycles--;
       if (remainingCycles <= 0) {

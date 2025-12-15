@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="./css/timer.css">
+<link rel="stylesheet" href="./css/progress.css">
+<link rel="stylesheet" href="./css/button.css">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/text.css">
+  <title>Temporizador de Treino</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class ="timerSection">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <h1 data-i18n="clock">Clock</h1>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <label data-i18n="language" style="margin: 0; font-size: 14px;">Idioma</label>
+        <select id="languageSelector" onchange="setLanguage(this.value)" style="padding: 4px 8px; border-radius: 4px;">
+          <option value="pt">🇵🇹 Português</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="fr">🇫🇷 Français</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="timer-wrapper">
+      <svg class="progress-ring" width="260" height="260">
+        <circle class="bg" cx="130" cy="130" r="115" />
+        <circle class="progress" cx="130" cy="130" r="115" />
+      </svg>
+<div class="timer">
+  <div id="timer">00:00</div>
+  <div class="status" id="status" data-i18n="stopped">Parado</div>
+</div>
+
+
+      <button id="pauseBtn" class="pause" onclick="togglePause()" data-i18n="pause">Pausar</button>
+    </div>
+    </div>
+<div style="margin-top:30%">
+
+
+    <label data-i18n="workTimeLabel">Tempo de cada ciclo</label>
+    <div style="display:flex; gap:6px;">
+      <input type="number" id="workTime" value="30" />
+      <select id="workUnit">
+        <option value="seconds" data-i18n="seconds">Segundos</option>
+        <option value="minutes" data-i18n="minutes">Minutos</option>
+        <option value="hours" data-i18n="hours">Horas</option>
+      </select>
+    </div>
+
+    <label data-i18n="restTimeLabel">Tempo de descanso</label>
+    <div style="display:flex; gap:6px;">
+      <input type="number" id="restTime" value="10" />
+      <select id="restUnit">
+        <option value="seconds" data-i18n="seconds">Segundos</option>
+        <option value="minutes" data-i18n="minutes">Minutos</option>
+        <option value="hours" data-i18n="hours">Horas</option>
+      </select>
+    </div>
+
+    <label data-i18n="cyclesLabel">Número de ciclos</label>
+    <input type="number" id="cycles" value="5" />
+
+    <div class="buttons">
+      <button onclick="startTimer()" data-i18n="start">Iniciar</button>
+      <button class="stop" onclick="stopTimer()" data-i18n="stop">Parar</button>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    let interval;
+    let currentTime = 0;
+    let totalTime = 0;
+    let isWork = true;
+    let remainingCycles = 0;
+    let isPaused = false;
+</script>
+    <script src="./js/translations.js"></script>
+    <script src="./js/timer.js"></script>
+    <script src="./js/buttons.js"></script>
+    <script src="./js/progress.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

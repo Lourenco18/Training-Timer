@@ -1,0 +1,23 @@
+ .progress-ring {
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring circle {
+      fill: none;
+      stroke-width: 10;
+    }
+
+    .progress-ring .bg {
+      stroke: rgba(255,255,255,0.15);
+    }
+
+    .progress-ring .progress {
+      stroke: rgba(255,255,255,0.85);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.5s linear;
+    }
+    .progress-ring .progress {
+  stroke: #22c55e; 
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s linear, stroke 0.3s ease;
+}
